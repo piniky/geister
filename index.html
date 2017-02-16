@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<HTML>
+<HEAD>
+    <meta content="text/html" charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>ガイスター</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- honoka(bootstrap) -->
+	<link href="http://cdn.honokak.osaka/honoka/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="./render.js"></script>
+    <script src="./game.js"></script>
+	<script src="https://js.pusher.com/3.2/pusher.min.js"></script>
+</HEAD>
+
+<BODY>
+	
+    <div class="container">
+    
+    
+	<script>
+	$(document).ready(function () {	
+		$(".gamearea").hide();
+		$(".gamestart").click(function () {
+			if ($("#playerName").val() == ""){
+				alert("ニックネームを入力してください");
+				return;
+			}
+			$(".gamearea").slideDown("slow");
+			$("#roommake").hide();
+            var ctx = document.getElementById("canv").getContext('2d');
+			if ($(this).hasClass("makeroom"))
+              $("#roomNum").val("");
+
+            var roomnum = $("#roomNum").val();
+            Game.initGame(ctx, roomnum);
+        });
+        });
+    </script>
+    <style>
+        #canv {
+            height: 600px;
+            width: 500px;
+        }
+    </style>
+	<h1>ガイスター</h1><hr>
+	<div class="col-lg-6" id="roommake">
+            
+            <div class="row">
+                <div class="col-lg-12">
+                    <label>ニックネーム</label>
+					<input type="text" id="playerName" size="15">
+				</div>
+			</div>
+			<div class="row" style="margin-top:100px">
+				<div class="col-lg-8">
+					<label>部屋番号</label>
+					<input type="text" id="roomNum" size="9">
+					<button class="btn btn-primary gamestart">部屋に入る</button>
+                </div>
+                <div class="col-lg-4">
+					<button class="btn btn-primary gamestart makeroom" style="display: inline;">部屋を作る</button>
+                </div>
+                
+        	</div>
+	</div>
+	<div class="col-lg-6 gamearea"><canvas id="canv" width="500px" height="600px"></canvas></div>
+	<div class="col-lg-6"><textarea id="log" class="form-control" disabled rows="10"></textarea></div>
+
+</div>
+</BODY>
+
+</HTML>
